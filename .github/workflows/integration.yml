@@ -20,6 +20,7 @@ jobs:
         run: 'echo The Ref is: ${{ github.ref }}'
         
       - name: Try to fail
+        uses: actions/github-script@v3
         with:
           script: |
             core.setFailed('this thing failed')
