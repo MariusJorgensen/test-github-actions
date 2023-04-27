@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3.1.0
-
+      
       - name: Run only if its a commit to main
-	      if: github.ref == 'refs/heads/main'
-	      run: 'echo The Ref is: ${{ github.ref }}'
+        if: github.ref == 'refs/heads/main'
+        run: 'echo The Ref is: ${{ github.ref }}'
       
       - run: 'echo Integration tests are done!'
 
