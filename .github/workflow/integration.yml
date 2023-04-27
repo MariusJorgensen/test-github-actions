@@ -1,0 +1,21 @@
+name: Integration
+
+on:
+  push:
+    branches:
+      - main
+      - integration-test/**
+
+jobs:
+  tests:
+    name: integration tests
+    runs-on: ubuntu-latest
+    needs: start-build-workflow
+    
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3.1.0
+
+      - run: 'echo The Ref is: ${{ github.ref }}'
+      - run: 'echo Integration tests are done!'
+
