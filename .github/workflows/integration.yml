@@ -56,11 +56,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Report anything but main failures to slack
-          uses: ravsamhq/notify-slack-action@v2
-          if: always() && github.ref != 'refs/heads/main'
-          with:
-            status: ${{ job.status }}
-            notification_title: "THIS DID NOT RUN ON MAIN!!! - {workflow} has {status_message}"
-            notify_when: "failure"
-          env:
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_NOT_MAIN }}
+        uses: ravsamhq/notify-slack-action@v2
+        if: always() && github.ref != 'refs/heads/main'
+        with:
+          status: ${{ job.status }}
+          notification_title: "THIS DID NOT RUN ON MAIN!!! - {workflow} has {status_message}"
+          notify_when: "failure"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_NOT_MAIN }}
