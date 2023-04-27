@@ -20,8 +20,10 @@ jobs:
         run: 'echo The Ref is: ${{ github.ref }}'
         
       - name: Try to fail
-        run: exit 1
-           
+        with:
+          script: |
+            core.setFailed('this thing failed')
+
       - run: 'echo Integration tests are done!'
       - name: report to slack
         uses: ravsamhq/notify-slack-action@v2
