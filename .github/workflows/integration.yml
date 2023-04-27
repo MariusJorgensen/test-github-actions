@@ -51,7 +51,6 @@ jobs:
       #   env:
       #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_NOT_MAIN }}
 
-jobs:
   slack-notify:
     runs-on: ubuntu-latest
     steps:
