@@ -18,7 +18,10 @@ jobs:
       - name: Run only if its a commit to main
         if: github.ref == 'refs/heads/main'
         run: 'echo The Ref is: ${{ github.ref }}'
-      
+        
+      - name: Try to fail
+        run: exit 1
+           
       - run: 'echo Integration tests are done!'
       - name: report to slack
         uses: ravsamhq/notify-slack-action@v2
