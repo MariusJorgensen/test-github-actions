@@ -20,4 +20,10 @@ jobs:
         run: 'echo The Ref is: ${{ github.ref }}'
       
       - run: 'echo Integration tests are done!'
-
+      - name: report to slack
+        uses: ravsamhq/notify-slack-action@v2
+        if: always()
+        with:
+          status: ${{ job.status }} # required
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
