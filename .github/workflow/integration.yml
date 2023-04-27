@@ -10,7 +10,6 @@ jobs:
   tests:
     name: integration tests
     runs-on: ubuntu-latest
-    needs: start-build-workflow
     
     steps:
       - name: Check out code
