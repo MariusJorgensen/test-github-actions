@@ -26,11 +26,23 @@ jobs:
             core.setFailed('this thing failed')
 
       - run: 'echo Integration tests are done!'
-      - name: report to slack
+      
+      - name: Report main failures to slack
         uses: ravsamhq/notify-slack-action@v2
-        if: github.ref == 'refs/heads/main'
+        if: always() && github.ref == 'refs/heads/main'
         with:
-          status: ${{ job.status }} # required
+          status: ${{ job.status }}
+          notification_title: "THIS RAN ON MAIN!!! - {workflow} has {status_message}"
           notify_when: "failure"
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Report anything but main failures to slack
+        uses: ravsamhq/notify-slack-action@v2
+        if: always() && github.ref != 'refs/heads/main'
+        with:
+          status: ${{ job.status }}
+          notification_title: "THIS DID NOT RUN ON MAIN!!! - {workflow} has {status_message}"
+          notify_when: "failure"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL_NOT_MAIN }}
