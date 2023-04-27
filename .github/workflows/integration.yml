@@ -28,7 +28,7 @@ jobs:
       - run: 'echo Integration tests are done!'
       - name: report to slack
         uses: ravsamhq/notify-slack-action@v2
-        if: github.ref == 'refs/heads/main'
+        if: always()
         with:
           status: ${{ job.status }} # required
           notify_when: "failure"
